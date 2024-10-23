@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:nivedita_tamrakar_personal_finance_app/constants/route_names.dart';
+import 'package:nivedita_tamrakar_personal_finance_app/ui/screens/transactionHistory.dart';
+import 'package:nivedita_tamrakar_personal_finance_app/ui/screens/transectionDetails.dart';
+
+import '../../providers/go_router_provider.dart';
 
 class Homescreen extends ConsumerStatefulWidget {
   const Homescreen({super.key});
@@ -26,12 +32,12 @@ class _HomescreenState extends ConsumerState<Homescreen> {
           title: Text("Personal Expenses"),
           backgroundColor: const Color.fromARGB(255, 155, 148, 202),
           bottom: const TabBar(labelPadding: EdgeInsets.all(15), tabs: [
-                Text("All Expenses"),
-                Text("Monthly Balance"),
-              ]),
+            Text("All Expenses"),
+            Text("Monthly Balance"),
+          ]),
         ),
-        //Tried to add the Sliver APP bar 
-        
+        //Tried to add the Sliver APP bar
+
         // body: CustomScrollView(
         //   controller: scrollController,
         //   slivers: [
@@ -49,19 +55,38 @@ class _HomescreenState extends ConsumerState<Homescreen> {
         //             width: double.infinity,
         //             fit: BoxFit.cover,
         //             'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQaaofIjY9g73wuhTL5mc7awXxEVdxMmMCcQ&s'),
-        //       ), 
+        //       ),
         //     ),
         //   ],
         // ),
 
-        body: TabBarView(
-            children: 
-                    [
-                        Center(child: Text('Airplane Mode Active')),
-                        Center(child: Text('Airplane Mode Inactive')),
-                     ]
-           ),
-          backgroundColor:const Color.fromARGB(255, 155, 148, 202),
+        body: TabBarView(children: [
+          //One way to navigate 
+          Navigator(
+            onGenerateRoute: (RouteSettings settings) {
+              return MaterialPageRoute(
+                builder: (context) => const Transactionhistory(),
+              );
+            },
+          ),
+
+          // Navigator(
+          //   onGenerateRoute: (RouteSettings settings) {
+          //     return MaterialPageRoute(
+          //       builder: (context) => const Transectiondetails(),
+          //     );
+          //   },
+          // ),
+
+          //Another Way to navigate
+              GestureDetector(
+              onTap: () {
+                context.go(RouteNames.transectionHistory.path());
+              },
+              child: Center(child: Text('Your Monthly Balance')),
+            ),
+        ]),
+        backgroundColor: const Color.fromARGB(255, 155, 148, 202),
       ),
     );
   }

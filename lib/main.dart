@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'providers/go_router_provider.dart';
 import 'ui/screens/homescreen.dart';
 
 void main() {
@@ -19,8 +20,10 @@ class _PersonalFinanceManagerState extends ConsumerState<PersonalFinanceManager>
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Homescreen(),
+    final goReouterconfig = ref.watch(goRouterProvider);
+    return MaterialApp.router(
+      //home: Homescreen(),
+       routerConfig: goReouterconfig,
     );
   }
 }
