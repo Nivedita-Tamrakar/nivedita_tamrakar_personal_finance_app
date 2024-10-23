@@ -87,6 +87,7 @@ class _HomescreenState extends ConsumerState<Homescreen> {
             ),
         ]),
         backgroundColor: const Color.fromARGB(255, 155, 148, 202),
+        
       ),
     );
   }
