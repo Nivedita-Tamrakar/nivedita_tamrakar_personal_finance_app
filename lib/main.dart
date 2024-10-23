@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'ui/screens/homescreen.dart';
+
 void main() {
   runApp(const 
   ProviderScope(child: PersonalFinanceManager()));
@@ -18,7 +20,7 @@ class _PersonalFinanceManagerState extends ConsumerState<PersonalFinanceManager>
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      
+      home: Homescreen(),
     );
   }
 }
